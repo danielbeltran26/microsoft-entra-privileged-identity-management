@@ -1,0 +1,9 @@
+FindingId,Area,Observation,PortalSeverity,Evidence,Status,PlannedResponse
+M01-F01,PIM readiness,"PIM for Microsoft Entra roles was available and accessible.",Informational,m01-02-pim-discovery-insights-baseline.png,Validated,"Proceed with controlled baseline assessment."
+M01-F02,Global Administrator exposure,"Four active permanent Global Administrator assignments were reported.",Low,m01-03-pim-security-alerts-baseline.png,Open,"Review standing assignments and preserve approved emergency-access exceptions."
+M01-F03,Activation security,"Directory Readers did not require MFA for activation.",Medium,m01-04-pim-mfa-alert-directory-readers.png,Open,"Require MFA and validate that the alert clears after reassessment."
+M01-F04,Workload identities,"Discovery and insights reported zero service principals with privileged-role assignments.",Informational,m01-02-pim-discovery-insights-baseline.png,Observed,"Retain as the portal baseline and validate separately if scope expands."
+M01-F05,Role settings,"The reviewed Microsoft Entra role settings were marked as unmodified.",Informational,m01-06-pim-role-settings-unmodified-baseline.png,Observed,"Document role-specific target controls before changing settings."
+M01-F06,Directory Readers policy,"Default activation required no MFA, while justification was enabled and approval was disabled.",Medium,m01-07-pim-directory-readers-default-settings.png,Open,"Apply a controlled MFA remediation without changing unrelated settings."
+M01-F07,Global Administrator policy,"Default Global Administrator activation required Azure MFA and justification but not approval or ticket information.",Review,m01-08-pim-global-admin-default-settings.png,Open,"Assess high-impact role controls and emergency-access requirements before remediation."
+
