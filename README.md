@@ -2,11 +2,12 @@
 
 ## Implementation status
 
-**Status: In progress — Milestone 1 published.** Milestone 1 establishes the
-Microsoft Entra Privileged Identity Management (PIM) readiness and security
-baseline. Milestone 2 tenant activities are complete, but their documentation,
-evidence package, and release validation are not yet published. Later milestones
-remain pending and are identified in the delivery roadmap below.
+**Status: In progress — Milestones 1 and 2 published.** Milestone 1 establishes
+the Microsoft Entra Privileged Identity Management (PIM) readiness and security
+baseline. Milestone 2 remediates the first baseline alert and validates a
+governed, time-bound User Administrator activation from assignment through
+deactivation. Later milestones remain pending and are identified in the delivery
+roadmap below.
 
 This repository documents a controlled synthetic implementation of privileged
 access governance for Microsoft Entra roles. The project progresses from
@@ -25,8 +26,8 @@ experience.
 | Business problem | Permanent and weakly governed privileged access increases the impact of identity compromise and reduces accountability |
 | Platform | Microsoft Entra ID with PIM for Microsoft Entra roles |
 | Controlled identities | Synthetic administration, approver, eligible-role, and emergency-access identities |
-| Current public release | Milestone 1 readiness, privileged-access discovery, security alerts, role-policy baselines, and evidence controls |
-| Current tenant progress | Milestone 2 role-policy remediation and a controlled User Administrator activation workflow completed; public release pending |
+| Current public release | Milestones 1 and 2: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, privileged task validation, audit, and deactivation |
+| Current tenant progress | Milestone 2 complete; Milestone 3 configuration changes have not started |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities are retained for later Global Administrator remediation |
 | Evidence boundary | Only approved screenshots without tenant-specific identity details are published |
 | Final target | A validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, and operational handover |
@@ -64,6 +65,8 @@ flowchart TD
 The detailed trust boundaries, responsibilities, and privileged-access design
 principles are documented in the
 [PIM Governance Operating Model](architecture/01-pim-governance-operating-model.md).
+The Milestone 2 request and approval path is documented in the
+[Eligible Access and Activation Flow](architecture/02-pim-eligible-access-and-activation-flow.md).
 
 ## Engineering scope
 
@@ -88,7 +91,7 @@ management are outside the current project scope.
 | ---: | --- | --- |
 | 0 | Repository foundation, controlled structure, privacy boundary, and release workflow | Complete |
 | 1 | PIM readiness, privileged-role discovery, security alerts, and pre-change role-policy baseline | **Complete — published** |
-| 2 | Directory Readers MFA remediation and end-to-end User Administrator eligible activation, approval, use, audit, and deactivation | **Tenant work complete — release pending** |
+| 2 | Directory Readers MFA remediation and end-to-end User Administrator eligible activation, approval, use, audit, and deactivation | **Complete — published** |
 | 3 | Global Administrator policy hardening, standing-access reduction, and governed emergency-access exceptions | Not started |
 | 4 | PIM for Groups and controlled privileged-group membership | Not started |
 | 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | Not started |
@@ -133,11 +136,46 @@ or formal access certification.
 Screenshots containing tenant-specific identities or user principal names are
 excluded from the public evidence set.
 
+## Milestone 2: eligible access and activation control
+
+Milestone 2 moved from observation to controlled remediation. Directory Readers
+was updated to require MFA during activation. User Administrator was then
+hardened and tested through a complete eligible-access workflow.
+
+### Implemented controls
+
+| Area | Implemented state | Validation |
+| --- | --- | --- |
+| Directory Readers | Azure MFA required during activation; unrelated settings retained | Post-change policy evidence and PIM alert rescan |
+| User Administrator activation | Two-hour maximum, Azure MFA, justification, ticket information, and approval by two designated members | Hardened-settings evidence and pending approval request |
+| User Administrator assignment | Permanent eligible and permanent active assignments disabled; eligible assignments expire after six months; active assignments expire after one month | Hardened-settings evidence |
+| Eligible access | One direct, directory-scoped eligible assignment created from 15 September 2026 through 14 March 2027 | Eligible-role evidence |
+| Privileged operation | A disabled, unlicensed synthetic validation identity was created and then deleted | Operator validation during the active window; no credentials retained |
+| Session closure | User Administrator was manually deactivated before its two-hour maximum elapsed | Active-state and audit-history evidence |
+| Alert outcome | The activation-MFA alert cleared; the separate Global Administrator count alert remained open | Post-remediation alert evidence |
+
+### Milestone 2 evidence
+
+| Evidence | Demonstrates |
+| --- | --- |
+| [Directory Readers MFA enforced](screenshots/m02-01-pim-directory-readers-mfa-enforced.png) | Azure MFA enabled for Directory Readers activation |
+| [User Administrator default settings](screenshots/m02-02-pim-user-administrator-default-settings.png) | Pre-change activation and assignment baseline |
+| [User Administrator hardened settings](screenshots/m02-03-pim-user-administrator-hardened-settings.png) | Two-hour activation and strengthened activation and assignment controls |
+| [Eligible role available](screenshots/m02-04-pim-eligible-role-activation-available.png) | User Administrator eligibility and Activate action |
+| [Activation request pending](screenshots/m02-05-pim-user-administrator-activation-request-pending.png) | Approval gate prevented immediate elevation |
+| [Active assignment](screenshots/m02-06-pim-user-administrator-active-assignment.png) | Approved, time-bound role activation |
+| [PIM audit history](screenshots/m02-07-pim-user-administrator-audit-history.png) | Assignment, request, approval, activation, and deactivation sequence |
+| [Alerts after remediation](screenshots/m02-08-pim-alerts-after-mfa-remediation.png) | MFA alert resolved and unrelated Global Administrator alert retained |
+
+The three exploratory files prefixed `m02-review-` are not part of the public
+release. They are excluded because they add no unique control evidence.
+
 ## Documentation map
 
 | Area | Artifact |
 | --- | --- |
 | Architecture and trust boundaries | [PIM Governance Operating Model](architecture/01-pim-governance-operating-model.md) |
+| Eligible-access sequence | [Eligible Access and Activation Flow](architecture/02-pim-eligible-access-and-activation-flow.md) |
 | Milestone implementation record | [PIM Readiness and Security Baseline](docs/01-milestone-01-pim-readiness-and-baseline.md) |
 | Testing and exit criteria | [Milestone 1 Test and Validation Record](docs/02-milestone-01-test-and-validation-record.md) |
 | Baseline findings | [Milestone 1 Baseline Findings](data/01-milestone-01-baseline-findings.csv) |
@@ -145,6 +183,13 @@ excluded from the public evidence set.
 | Control requirements | [PIM Baseline Control Requirements](policies/01-pim-baseline-control-requirements.md) |
 | Operational procedure | [PIM Readiness and Alert Review Runbook](runbooks/01-review-pim-readiness-and-alerts.md) |
 | Repository validation | [Milestone 1 Evidence Validator](scripts/01-Test-Milestone01Evidence.ps1) |
+| Milestone 2 implementation record | [Eligible Access Remediation](docs/03-milestone-02-eligible-access-remediation.md) |
+| Milestone 2 testing and exit criteria | [Milestone 2 Test and Validation Record](docs/04-milestone-02-test-and-validation-record.md) |
+| Milestone 2 control results | [Milestone 2 Control Validation](data/03-milestone-02-control-validation.csv) |
+| Milestone 2 evidence hashes | [Milestone 2 Evidence Manifest](data/04-milestone-02-evidence-manifest.csv) |
+| Eligible-access standard | [PIM Eligible Access Control Standard](policies/02-pim-eligible-access-control-standard.md) |
+| Activation procedure | [PIM Eligible Role Activation Runbook](runbooks/02-operate-pim-eligible-role-activation.md) |
+| Cumulative release validation | [Milestone 2 Evidence Validator](scripts/02-Test-Milestone02Evidence.ps1) |
 
 ## Security and engineering controls
 
@@ -154,6 +199,9 @@ excluded from the public evidence set.
 - Baseline evidence was captured before remediation.
 - Each approved screenshot has a recorded byte length and SHA-256 hash.
 - Exploratory and identity-bearing screenshots are excluded from GitHub.
+- The requester and approver functions were separated for the tested activation.
+- The elevated role was activated only for a bounded task and manually
+  deactivated when the task ended.
 - Emergency-access identities are separated from routine administration and
   must be validated before Global Administrator assignments are reduced.
 - Later control changes require explicit test outcomes, rollback criteria, and
@@ -176,22 +224,27 @@ excluded from the public evidence set.
 
 ## Validation
 
-Run the Milestone 1 validator from Windows PowerShell in the repository root:
+Run both cumulative validators from Windows PowerShell in the repository root:
 
 ```powershell
 .\scripts\01-Test-Milestone01Evidence.ps1
+.\scripts\02-Test-Milestone02Evidence.ps1
 ```
 
-The script performs read-only checks for required release files, screenshot
-names and hashes, PowerShell syntax, prohibited identity wording, and unexpected
-Milestone 1 evidence. It excludes the local `temporary` staging directory from
-its scan. It does not connect to Microsoft Entra ID or change the tenant.
+The scripts perform read-only checks for required release files, screenshot
+names and hashes, PowerShell syntax, relative links, prohibited identity wording,
+and unexpected public evidence. They exclude the local `temporary` staging
+directory from their scan. They do not connect to Microsoft Entra ID or change
+the tenant.
 
 ## Current limitations and production improvements
 
 - The implementation uses a small controlled synthetic tenant population.
 - Milestone 1 portal discovery is not a substitute for a complete Microsoft
   Graph inventory or formal access review.
+- The controlled User Administrator task validates the elevation path at lab
+  scale; it does not replace production change approval or representative user
+  acceptance testing.
 - Later milestones must validate assignment lifecycle, monitoring, escalation,
   and recovery rather than relying only on portal configuration.
 - Production adoption would require representative scale, formal ownership,
@@ -205,5 +258,9 @@ its scan. It does not connect to Microsoft Entra ID or change the tenant.
 - [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan)
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
+- [Assign Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user)
+- [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
+- [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
+- [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
 - [Manage emergency-access accounts](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
 - [Microsoft Entra ID Governance licensing fundamentals](https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals)
