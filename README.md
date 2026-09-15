@@ -158,7 +158,8 @@ excluded from the public evidence set.
   must be validated before Global Administrator assignments are reduced.
 - Later control changes require explicit test outcomes, rollback criteria, and
   post-change evidence before publication.
-- The local `temporary` directory is excluded from version control.
+- The local `temporary` directory is never included in validated manual
+  GitHub upload packages.
 
 ## Repository structure
 
@@ -171,7 +172,7 @@ excluded from the public evidence set.
 | `runbooks/` | Repeatable review, activation, recovery, and monitoring procedures |
 | `screenshots/` | Approved numbered technical evidence |
 | `scripts/` | Read-only repository and evidence-validation scripts |
-| `temporary/` | Local package staging only; excluded by [`.gitignore`](.gitignore) |
+| `temporary/` | Local package staging only; excluded from every validated manual GitHub upload package |
 
 ## Validation
 
@@ -182,9 +183,9 @@ Run the Milestone 1 validator from Windows PowerShell in the repository root:
 ```
 
 The script performs read-only checks for required release files, screenshot
-names and hashes, PowerShell syntax, prohibited identity wording, and the
-`temporary` Git exclusion. It does not connect to Microsoft Entra ID or change
-the tenant.
+names and hashes, PowerShell syntax, prohibited identity wording, and unexpected
+Milestone 1 evidence. It excludes the local `temporary` staging directory from
+its scan. It does not connect to Microsoft Entra ID or change the tenant.
 
 ## Current limitations and production improvements
 

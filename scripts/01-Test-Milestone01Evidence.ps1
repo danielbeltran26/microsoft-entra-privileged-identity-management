@@ -6,7 +6,6 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $RequiredFiles = @(
-    '.gitignore'
     'README.md'
     'architecture\01-pim-governance-operating-model.md'
     'data\01-milestone-01-baseline-findings.csv'
@@ -75,14 +74,6 @@ if (Test-Path -LiteralPath $ManifestPath -PathType Leaf) {
     }
 }
 
-$GitIgnorePath = Join-Path $ProjectRoot '.gitignore'
-$TemporaryExcluded = $false
-
-if (Test-Path -LiteralPath $GitIgnorePath -PathType Leaf) {
-    $GitIgnoreContent = Get-Content -LiteralPath $GitIgnorePath -Raw
-    $TemporaryExcluded = $GitIgnoreContent -match '(?m)^/?temporary/?\*?\s*$'
-}
-
 $PowerShellParseErrors = @()
 $PowerShellFiles = @(
     Get-ChildItem -LiteralPath (Join-Path $ProjectRoot 'scripts') -File -Filter '*.ps1'
@@ -137,8 +128,7 @@ $ValidationPassed = (
     $UnexpectedScreenshots.Count -eq 0 -and
     $HashMismatch.Count -eq 0 -and
     $PowerShellParseErrors.Count -eq 0 -and
-    $PrivacyFindings.Count -eq 0 -and
-    $TemporaryExcluded
+    $PrivacyFindings.Count -eq 0
 )
 
 [PSCustomObject]@{
@@ -152,7 +142,8 @@ $ValidationPassed = (
     PowerShellFileCount          = $PowerShellFiles.Count
     PowerShellParseErrorCount    = $PowerShellParseErrors.Count
     PrivacyFindingCount          = $PrivacyFindings.Count
-    TemporaryExcludedFromGit     = $TemporaryExcluded
+    TemporaryExcludedFromScan    = $true
+    ManualUploadPackageRequired  = $true
     ActiveDirectoryChanges       = $false
     MicrosoftEntraChanges        = $false
     ValidationPassed             = $ValidationPassed
