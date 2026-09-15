@@ -20,7 +20,6 @@ PIM and record the Milestone 2 User Administrator implementation profile.
 | PIM-EA-09 | End access when the approved work finishes. | The requester manually deactivated User Administrator after the test. |
 | PIM-EA-10 | Retain auditable lifecycle evidence. | PIM audit history recorded the request, approval, activation, and deactivation. |
 | PIM-EA-11 | Validate related security alerts after remediation. | The MFA activation alert cleared; the unrelated Global Administrator alert remained open. |
-| PIM-EA-12 | Publish only necessary, privacy-safe evidence. | Eight approved screenshots are hashed; exploratory and identity-bearing images are excluded. |
 
 ## User Administrator profile
 
@@ -66,20 +65,8 @@ Milestone 3 changes standing Global Administrator access.
 Any exception for a routine privileged identity must record the role, business
 need, owner, duration, compensating controls, review date, and removal condition.
 
-## Evidence requirements
-
-- Capture pre-change settings before remediation.
-- Capture post-change controls after the portal reports success.
-- Prove that approval blocks immediate activation.
-- Prove the active assignment has an end time.
-- Verify deactivation and audit history.
-- Record SHA-256 hashes for approved evidence.
-- Do not publish passwords, authentication secrets, personal email addresses,
-  tenant domains, or complete user principal names.
-
 ## References
 
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
 - [Assign Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user)
 - [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
-

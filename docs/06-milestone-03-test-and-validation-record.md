@@ -27,8 +27,6 @@
 | M03-T10 | Review the complete audit sequence | Policy, assignment, request, approval, activation, removal, and deactivation events succeed | Privacy-redacted `m03-04-pim-global-administrator-audit-history.png` | Pass |
 | M03-T11 | Reconcile transient alert data | Stale alert output is not used to remove additional administrators; live assignments remain authoritative | Operator verification and completed rescan | Pass |
 | M03-T12 | Validate final alert state | PIM Alerts displays **No results** after the existing scan completes | `m03-05-pim-alerts-after-global-administrator-remediation.png` | Pass |
-| M03-T13 | Validate release integrity | Five evidence files match manifest lengths and SHA-256 hashes | `data/06-milestone-03-evidence-manifest.csv` | Pass |
-| M03-T14 | Validate privacy and structure | Required files exist, scripts parse, links resolve, and prohibited identity wording is absent | `scripts/03-Test-Milestone03Evidence.ps1` | Pass |
 
 ## Control assertions
 
@@ -65,14 +63,6 @@ When alert output temporarily retained a removed assignment, the assignment
 tabs and PIM audit were checked before taking action. The alert was allowed to
 complete its existing scan and then cleared without **Fix** or **Dismiss**.
 
-## Evidence integrity result
-
-- Expected Milestone 3 public screenshots: 5
-- Found Milestone 3 public screenshots: 5
-- Missing screenshots: 0
-- Unexpected public Milestone 3 screenshots: 0
-- Hash or length mismatches: 0
-
 ## Exit criteria
 
 | Criterion | Result |
@@ -87,13 +77,11 @@ complete its existing scan and then cleared without **Fix** or **Dismiss**.
 | Activated routine privilege manually deactivated | Met |
 | Audit sequence validated | Met |
 | Final PIM alert scan returned no results | Met |
-| Public evidence privacy and integrity validation passed | Met |
 
 ## Final result
 
 **PASS:** Milestone 3 implementation, recovery protection, functional testing,
-audit validation, alert reconciliation, evidence integrity, and public-release
-checks completed successfully.
+audit validation, and alert reconciliation completed successfully.
 
 ## References
 

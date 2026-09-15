@@ -28,8 +28,7 @@ separate browser sessions. Each could sign in and displayed a permanent active
 Global Administrator assignment. This check established two independent
 recovery paths before routine standing access was reduced.
 
-Identity-bearing verification screens were not retained in the public evidence
-set.
+Identity-bearing verification screens were not retained.
 
 ## Implemented Global Administrator policy
 
@@ -99,20 +98,6 @@ results**.
 This distinction is important: assignment inventory and audit records were used
 as the authoritative state, while asynchronous alert processing was allowed to
 converge.
-
-## Security and privacy controls
-
-- No password, authentication secret, complete tenant user principal name, or
-  personal email address is stored in the public release.
-- Five screenshots form the approved Milestone 3 evidence set.
-- The audit screenshot redacts the personal display name while retaining the
-  technical event sequence, role, requester, approver, time, and status fields.
-- Identity-bearing assignment-detail and stale-alert-detail screenshots are
-  excluded.
-- The tested activation used separate requester and approver identities.
-- The two standing Global Administrator assignments are documented emergency
-  exceptions, not routine access.
-- Evidence files are protected by recorded byte lengths and SHA-256 hashes.
 
 ## Outcome
 

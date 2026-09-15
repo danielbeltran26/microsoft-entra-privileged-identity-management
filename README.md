@@ -2,7 +2,7 @@
 
 ## Implementation status
 
-**Status: In progress — Milestones 1, 2, and 3 published.** Milestone 1 establishes
+**Status: In progress — Milestones 1, 2, and 3 complete.** Milestone 1 establishes
 the Microsoft Entra Privileged Identity Management (PIM) readiness and security
 baseline. Milestone 2 remediates the first baseline alert and validates a
 governed, time-bound User Administrator activation from assignment through
@@ -11,15 +11,14 @@ standing access with approval-controlled eligibility, and preserves two
 governed emergency-access exceptions. Later milestones remain pending and are
 identified in the delivery roadmap below.
 
-This repository documents a controlled synthetic implementation of privileged
-access governance for Microsoft Entra roles. The project progresses from
+This controlled synthetic implementation demonstrates privileged-access
+governance for Microsoft Entra roles. It progresses from
 read-only discovery through role-specific policy hardening, just-in-time
 activation, approval, emergency-access governance, monitoring, and final
 operational assurance.
 
-The repository represents a hands-on laboratory. It does not claim an
-organization-wide production deployment or production IAM employment
-experience.
+This is a hands-on laboratory implementation. It does not claim an
+organization-wide production deployment.
 
 ## Executive overview
 
@@ -28,10 +27,10 @@ experience.
 | Business problem | Permanent and weakly governed privileged access increases the impact of identity compromise and reduces accountability |
 | Platform | Microsoft Entra ID with PIM for Microsoft Entra roles |
 | Controlled identities | Synthetic administration, approver, eligible-role, and emergency-access identities |
-| Current public release | Milestones 1–3: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, audit, and alert validation |
+| Implemented scope | Milestones 1–3: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, audit, and alert validation |
 | Current tenant progress | Milestone 3 complete; Milestone 4 configuration changes have not started |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities retain permanent active Global Administrator as documented recovery exceptions |
-| Evidence boundary | Only approved screenshots without complete tenant UPNs, personal email addresses, authentication secrets, or tenant configuration identifiers are published |
+| Evidence boundary | Retained screenshots exclude complete tenant UPNs, personal email addresses, authentication secrets, and tenant configuration identifiers |
 | Final target | A validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, and operational handover |
 
 ## Business scenario and objective
@@ -40,7 +39,7 @@ Standing privileged access remains continuously available to an identity and
 therefore to an attacker who compromises it. Default PIM settings may also lack
 the activation controls appropriate for a role's impact.
 
-This project demonstrates how to:
+This implementation demonstrates how to:
 
 - identify permanent and high-impact privileged assignments;
 - establish a trustworthy pre-change baseline;
@@ -84,27 +83,21 @@ in the [Global Administrator Governance Model](architecture/03-global-administra
 - PIM for Groups and controlled privileged-group membership
 - Activation, deactivation, expiration, renewal, extension, and removal lifecycle
 - PIM audit evidence, monitoring, operational review, and recovery procedures
-- Evidence integrity, privacy review, and deterministic repository validation
 
 Azure resource roles, production-scale privileged populations, and entitlement
-management are outside the current project scope.
+management are outside the current implementation scope.
 
 ## Delivery roadmap
 
 | Milestone | Principal outcome | Status |
 | ---: | --- | --- |
-| 0 | Repository foundation, controlled structure, privacy boundary, and release workflow | Complete |
-| 1 | PIM readiness, privileged-role discovery, security alerts, and pre-change role-policy baseline | **Complete — published** |
-| 2 | Directory Readers MFA remediation and end-to-end User Administrator eligible activation, approval, use, audit, and deactivation | **Complete — published** |
-| 3 | Global Administrator policy hardening, standing-access reduction, and governed emergency-access exceptions | **Complete — published** |
+| 1 | PIM readiness, privileged-role discovery, security alerts, and pre-change role-policy baseline | **Complete** |
+| 2 | Directory Readers MFA remediation and end-to-end User Administrator eligible activation, approval, use, audit, and deactivation | **Complete** |
+| 3 | Global Administrator policy hardening, standing-access reduction, and governed emergency-access exceptions | **Complete** |
 | 4 | PIM for Groups and controlled privileged-group membership | Not started |
 | 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | Not started |
 | 6 | PIM alerts, audit monitoring, periodic review, escalation, and recovery operations | Not started |
 | 7 | Integrated privileged-access scenario, final assurance, limitations, and operational handover | Not started |
-
-Milestone status distinguishes tenant implementation from public release. A
-milestone is marked published only after its documentation, evidence,
-validation, privacy review, and GitHub package have passed.
 
 ## Milestone 1: readiness and security baseline
 
@@ -137,8 +130,8 @@ or formal access certification.
 | [Global Administrator default settings](screenshots/m01-08-pim-global-admin-default-settings.png) | Original activation and assignment controls |
 | [Global Administrator default notifications](screenshots/m01-09-pim-global-admin-default-notifications.png) | Original notification configuration |
 
-Screenshots containing tenant-specific identities or user principal names are
-excluded from the public evidence set.
+Screenshots containing tenant-specific identities or user principal names were
+not retained.
 
 ## Milestone 2: eligible access and activation control
 
@@ -171,8 +164,8 @@ hardened and tested through a complete eligible-access workflow.
 | [PIM audit history](screenshots/m02-07-pim-user-administrator-audit-history.png) | Assignment, request, approval, activation, and deactivation sequence |
 | [Alerts after remediation](screenshots/m02-08-pim-alerts-after-mfa-remediation.png) | MFA alert resolved and unrelated Global Administrator alert retained |
 
-The three exploratory files prefixed `m02-review-` are not part of the public
-release. They are excluded because they add no unique control evidence.
+Three exploratory files prefixed `m02-review-` were not retained because they
+add no unique control evidence.
 
 ## Milestone 3: Global Administrator governance
 
@@ -200,8 +193,8 @@ preserving two separately validated emergency-recovery paths.
 | [Privacy-redacted PIM audit history](screenshots/m03-04-pim-global-administrator-audit-history.png) | Policy, assignment, approval, activation, removal, and deactivation events |
 | [Alerts after remediation](screenshots/m03-05-pim-alerts-after-global-administrator-remediation.png) | Completed PIM alert scan returned no results |
 
-Identity-bearing assignment details and the transient stale-alert detail are
-excluded from the public release.
+Identity-bearing assignment details and the transient stale-alert detail were
+not retained.
 
 ## Documentation map
 
@@ -212,72 +205,44 @@ excluded from the public release.
 | Milestone implementation record | [PIM Readiness and Security Baseline](docs/01-milestone-01-pim-readiness-and-baseline.md) |
 | Testing and exit criteria | [Milestone 1 Test and Validation Record](docs/02-milestone-01-test-and-validation-record.md) |
 | Baseline findings | [Milestone 1 Baseline Findings](data/01-milestone-01-baseline-findings.csv) |
-| Evidence hashes | [Milestone 1 Evidence Manifest](data/02-milestone-01-evidence-manifest.csv) |
 | Control requirements | [PIM Baseline Control Requirements](policies/01-pim-baseline-control-requirements.md) |
 | Operational procedure | [PIM Readiness and Alert Review Runbook](runbooks/01-review-pim-readiness-and-alerts.md) |
-| Repository validation | [Milestone 1 Evidence Validator](scripts/01-Test-Milestone01Evidence.ps1) |
 | Milestone 2 implementation record | [Eligible Access Remediation](docs/03-milestone-02-eligible-access-remediation.md) |
 | Milestone 2 testing and exit criteria | [Milestone 2 Test and Validation Record](docs/04-milestone-02-test-and-validation-record.md) |
 | Milestone 2 control results | [Milestone 2 Control Validation](data/03-milestone-02-control-validation.csv) |
-| Milestone 2 evidence hashes | [Milestone 2 Evidence Manifest](data/04-milestone-02-evidence-manifest.csv) |
 | Eligible-access standard | [PIM Eligible Access Control Standard](policies/02-pim-eligible-access-control-standard.md) |
 | Activation procedure | [PIM Eligible Role Activation Runbook](runbooks/02-operate-pim-eligible-role-activation.md) |
-| Milestone 2 cumulative validation | [Milestone 2 Evidence Validator](scripts/02-Test-Milestone02Evidence.ps1) |
 | Global Administrator design | [Global Administrator Governance Model](architecture/03-global-administrator-governance-model.md) |
 | Milestone 3 implementation record | [Global Administrator Remediation](docs/05-milestone-03-global-administrator-remediation.md) |
 | Milestone 3 testing and exit criteria | [Milestone 3 Test and Validation Record](docs/06-milestone-03-test-and-validation-record.md) |
 | Milestone 3 control results | [Milestone 3 Control Validation](data/05-milestone-03-control-validation.csv) |
-| Milestone 3 evidence hashes | [Milestone 3 Evidence Manifest](data/06-milestone-03-evidence-manifest.csv) |
 | Global Administrator standard | [Global Administrator and Emergency Access Standard](policies/03-global-administrator-and-emergency-access-standard.md) |
 | Global Administrator procedure | [Global Administrator Operations Runbook](runbooks/03-operate-global-administrator-access.md) |
-| Cumulative release validation | [Milestone 3 Evidence Validator](scripts/03-Test-Milestone03Evidence.ps1) |
 
 ## Security and engineering controls
 
 - No passwords, access tokens, authentication secrets, personal email
-  addresses, or tenant-specific user principal names are stored in the public
-  release.
+  addresses, or tenant-specific user principal names are retained.
 - Baseline evidence was captured before remediation.
-- Each approved screenshot has a recorded byte length and SHA-256 hash.
-- Exploratory and identity-bearing screenshots are excluded from GitHub.
+- Exploratory and identity-bearing screenshots were not retained.
 - The requester and approver functions were separated for the tested activation.
 - The elevated role was activated only for a bounded task and manually
   deactivated when the task ended.
 - Emergency-access identities are separated from routine administration,
   independently validated, and retained as documented permanent exceptions.
 - Later control changes require explicit test outcomes, rollback criteria, and
-  post-change evidence before publication.
-- The local `temporary` directory is never included in validated manual
-  GitHub upload packages.
+  post-change evidence.
 
-## Repository structure
+## Technical documentation structure
 
 | Path | Purpose |
 | --- | --- |
 | `architecture/` | PIM scope, trust boundaries, responsibilities, and operating model |
-| `data/` | Structured findings and evidence-integrity manifests |
+| `data/` | Structured baseline findings and control-validation results |
 | `docs/` | Milestone implementation and validation records |
 | `policies/` | Privileged-access control requirements and role-policy decisions |
 | `runbooks/` | Repeatable review, activation, recovery, and monitoring procedures |
 | `screenshots/` | Approved numbered technical evidence |
-| `scripts/` | Read-only repository and evidence-validation scripts |
-| `temporary/` | Local package staging only; excluded from every validated manual GitHub upload package |
-
-## Validation
-
-Run the cumulative validators from Windows PowerShell in the repository root:
-
-```powershell
-.\scripts\01-Test-Milestone01Evidence.ps1
-.\scripts\02-Test-Milestone02Evidence.ps1
-.\scripts\03-Test-Milestone03Evidence.ps1
-```
-
-The scripts perform read-only checks for required release files, screenshot
-names and hashes, PowerShell syntax, relative links, prohibited identity wording,
-and unexpected public evidence. They exclude the local `temporary` staging
-directory from their scan. They do not connect to Microsoft Entra ID or change
-the tenant.
 
 ## Current limitations and production improvements
 

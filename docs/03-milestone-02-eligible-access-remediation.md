@@ -105,16 +105,6 @@ The post-change PIM alert scan no longer displayed **Roles don't require
 multi-factor authentication for activation**. The separate alert concerning the
 number of Global Administrators remained open and was not fixed or dismissed.
 
-## Security and privacy controls
-
-- Only synthetic identities and ticket data were used.
-- No password, authentication secret, personal email address, tenant domain, or
-  complete user principal name is published.
-- Eight unique screenshots form the approved public evidence set.
-- Three exploratory `m02-review-*` screenshots are excluded from the release.
-- Each published screenshot has a recorded byte length and SHA-256 hash.
-- Validation scripts are read-only and do not connect to Microsoft Entra ID.
-
 ## Rollback and recovery design
 
 If activation controls had blocked required administration unexpectedly, the
@@ -138,4 +128,3 @@ deactivated, and the full sequence was present in PIM audit history.
 - [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
-

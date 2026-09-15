@@ -17,7 +17,6 @@ Define the privileged-access controls against which the observed PIM baseline is
 | PIM-07 | Retain only approved emergency-access exceptions as permanent active Global Administrators. | Preserves recovery access while limiting routine standing privilege. |
 | PIM-08 | Review PIM security alerts and audit activity on a defined schedule. | Detects unsafe configuration and unexpected privileged activity. |
 | PIM-09 | Record baseline evidence before remediation and post-change evidence afterward. | Supports traceability and control-effectiveness testing. |
-| PIM-10 | Exclude tenant-specific identity data from repository evidence unless safely redacted. | Prevents unnecessary information disclosure. |
 
 ## Exception handling
 
@@ -38,4 +37,3 @@ Control implementation is not complete merely because a portal setting is enable
 ## Reference
 
 [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan)
-

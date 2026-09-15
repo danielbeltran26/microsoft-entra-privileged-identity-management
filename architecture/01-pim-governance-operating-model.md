@@ -34,7 +34,6 @@ flowchart TD
 | Eligible role member | Activates only when privileged access is required |
 | Approver | Confirms business need before protected-role activation |
 | Emergency-access custodian | Maintains controlled access for recovery scenarios |
-| Reviewer | Verifies evidence integrity, privacy, and control effectiveness |
 
 ## Trust boundaries
 
@@ -44,7 +43,6 @@ flowchart TD
 | Role activation | An eligible identity can elevate privileges | Require proportionate MFA, justification, duration, and approval controls |
 | Approval decision | Weak approval can become a rubber-stamp control | Use designated approvers and retain decision evidence |
 | Emergency access | Strong controls can accidentally lock out all administrators | Maintain and test controlled cloud-only emergency accounts |
-| Evidence handling | Screenshots can disclose tenant or identity data | Use approved filenames, integrity hashes, and privacy review |
 
 ## Design principles
 
@@ -58,4 +56,3 @@ flowchart TD
 ## Reference
 
 [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan)
-

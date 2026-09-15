@@ -17,8 +17,6 @@ This milestone was observational. No role setting, assignment, alert, license, u
 5. Reviewed the Microsoft Entra role settings inventory.
 6. Captured Directory Readers defaults.
 7. Captured Global Administrator activation, assignment, and notification defaults.
-8. Removed screenshots containing tenant-specific identity data from the release set.
-9. Recorded SHA-256 hashes for every approved evidence image.
 
 ## Observed state
 
@@ -86,4 +84,3 @@ PIM readiness was confirmed and the initial privileged-access control gaps were 
 - [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan)
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
-

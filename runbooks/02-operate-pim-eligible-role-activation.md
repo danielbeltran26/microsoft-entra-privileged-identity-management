@@ -99,17 +99,8 @@ Stop and escalate if:
 - evidence exposes a password, token, personal email address, tenant domain, or
   complete user principal name.
 
-## Evidence handling
-
-- Capture only evidence required by the milestone test plan.
-- Use the approved filename at capture time.
-- Do not keep duplicate or exploratory screenshots in the public release.
-- Record each approved image's byte length and SHA-256 hash.
-- Validate the clean upload folder before publishing.
-
 ## References
 
 - [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
 - [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
-

@@ -35,14 +35,6 @@ Stop and escalate the review if:
 - A screenshot contains a user principal name, personal email address, or unrelated identity detail.
 - Emergency-access assignments cannot be distinguished from routine administration.
 
-## Evidence handling
-
-- Capture only evidence required by the test plan.
-- Use the approved milestone filename at capture time.
-- Do not retain duplicate or exploratory screenshots in the repository evidence folder.
-- Record a SHA-256 hash after the final evidence set is approved.
-- Keep the local `temporary` folder excluded from Git.
-
 ## Expected output
 
 - Updated baseline findings.
@@ -54,4 +46,3 @@ Stop and escalate the review if:
 
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
-

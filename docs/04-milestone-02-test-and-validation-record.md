@@ -27,8 +27,6 @@
 | M02-T10 | Deactivate before expiry | Current active User Administrator access is removed | PIM audit evidence | Pass |
 | M02-T11 | Review complete audit sequence | Assignment, request, approval, activation, and deactivation are successful | `m02-07-pim-user-administrator-audit-history.png` | Pass |
 | M02-T12 | Rescan PIM alerts | Activation-MFA alert is absent; unrelated Global Administrator alert remains | `m02-08-pim-alerts-after-mfa-remediation.png` | Pass |
-| M02-T13 | Validate release integrity | Eight evidence files match manifest lengths and SHA-256 hashes | `data/04-milestone-02-evidence-manifest.csv` | Pass |
-| M02-T14 | Validate release privacy and structure | Required files exist; review-only images are excluded; scripts parse; relative links resolve; prohibited identity wording is absent | `scripts/02-Test-Milestone02Evidence.ps1` | Pass |
 
 ## Control assertions
 
@@ -62,15 +60,6 @@ The PIM audit view showed the lifecycle events required to reconstruct the
 tested activation. Portal audit history is time-limited, so production use would
 also export logs for longer retention and correlation.
 
-## Evidence integrity result
-
-- Expected Milestone 2 public screenshots: 8
-- Found Milestone 2 public screenshots: 8
-- Missing screenshots: 0
-- Unexpected public Milestone 2 screenshots: 0
-- Hash or length mismatches: 0
-- Review-only screenshots included in the release: 0
-
 ## Exit criteria
 
 | Criterion | Result |
@@ -84,16 +73,14 @@ also export logs for longer retention and correlation.
 | Role manually deactivated | Met |
 | Audit sequence validated | Met |
 | MFA alert cleared without dismissing the remaining alert | Met |
-| Public evidence privacy and integrity validation passed | Met |
 
 ## Final result
 
-**PASS:** Milestone 2 implementation, functional testing, security control
-validation, evidence integrity, and public-release checks completed successfully.
+**PASS:** Milestone 2 implementation, functional testing, and security control
+validation completed successfully.
 
 ## References
 
 - [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
 - [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
-

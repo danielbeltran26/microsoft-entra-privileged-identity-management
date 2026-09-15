@@ -23,7 +23,6 @@ reviews, and production log export remain outside Milestone 2.
 | Eligible role member | Request User Administrator only for an identified task | Cannot approve the same request |
 | Designated approver | Evaluate and approve or deny the activation request | Uses a separate synthetic identity and records justification |
 | PIM service | Enforce activation rules, provision temporary access, and record events | Removes the active assignment after deactivation or expiry |
-| Evidence reviewer | Verify settings, state transitions, audit history, privacy, and integrity | Does not alter the tenant during release validation |
 
 ## Control flow
 
@@ -45,7 +44,6 @@ flowchart TD
 | Approval | Requester authorizes their own elevation | Separate designated approver identity |
 | Privileged use | Privilege is used beyond the approved task | Disabled, unlicensed synthetic validation object and bounded test procedure |
 | Session closure | Privilege remains active after work ends | Manual deactivation followed by audit verification |
-| Evidence publication | Tenant or personal details are exposed | Curated screenshots, synthetic labels, hash manifest, and exclusion of exploratory images |
 
 ## Role-policy decisions
 
@@ -84,4 +82,3 @@ two-hour activation maximum.
 - [Assign Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user)
 - [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
 - [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
-
