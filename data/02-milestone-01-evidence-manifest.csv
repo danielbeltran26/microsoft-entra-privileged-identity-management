@@ -1,9 +1,0 @@
-FileName,Length,SHA256,Purpose
-m01-02-pim-discovery-insights-baseline.png,106084,26E079778928E2F14653E21B4FCFDF96E9F85BE0380CA4B30ABDD778B5008423,Discovery and insights baseline
-m01-03-pim-security-alerts-baseline.png,56060,E165E7481EA66EA29D162C3AE5EDDEC6E869C36A7F419A118C2CB90567FBA934,Initial security alert state
-m01-04-pim-mfa-alert-directory-readers.png,47801,2C31FDBF414ACD42633A2147274CAD22638461A2A0BEE7FED60577426C9DA526,Directory Readers MFA alert detail
-m01-06-pim-role-settings-unmodified-baseline.png,77547,32BC20D95A9B0FF72D155DB12BDB02D1C8D23D85A246B1BC920D9A3FC6993730,Unmodified role settings baseline
-m01-07-pim-directory-readers-default-settings.png,58490,62105CC9E8B6D3131F700D9525518F636B08E71F75909F17C1B57EFB5D9C2BB7,Directory Readers default settings
-m01-08-pim-global-admin-default-settings.png,59548,1D07B60629CA89D6EEF251F7E5B316C1BC368DD4CEA9F11F04678CD23F77AF2B,Global Administrator default settings
-m01-09-pim-global-admin-default-notifications.png,71825,C96829CAAD4BF7393629D0D76C327C97CC80EC7D124C3427FB8EA2F394E9F2C4,Global Administrator default notifications
-
