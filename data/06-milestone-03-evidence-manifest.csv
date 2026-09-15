@@ -1,0 +1,6 @@
+FileName,Length,SHA256,Purpose
+m03-01-pim-global-administrator-hardened-settings.png,61656,1EA1D95C5D1E501067330BD94563439E5DC97DD91E2B46071BE035754AE4174D,"Global Administrator activation and assignment controls after hardening"
+m03-02-pim-global-administrator-activation-request-pending.png,32648,9FA0A4B11A9611B8C7A9D08908B31D6F6670FE5D56AAB73D21F2B0DD113650C9,"Approval-gated Global Administrator activation request"
+m03-03-pim-global-administrator-active-assignment.png,68253,051E5858473A0A077CF05D1406AFCC6E8F380A9899FBA11CFE5E09501EC136BE,"Approved one-hour Global Administrator activation"
+m03-04-pim-global-administrator-audit-history.png,1609850,5CC381D1BF77C9A1D32E47FCBBEEA3CCD95A084F4A130384C8E595F7D66F62A1,"Privacy-redacted policy, assignment, approval, activation, removal, and deactivation audit events"
+m03-05-pim-alerts-after-global-administrator-remediation.png,49243,10063691FDCBF7C825117F40F1BF18FF0C542D925E2C83B87CF4549D305ED7A9,"Final PIM alert scan showing no results"
