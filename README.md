@@ -2,14 +2,16 @@
 
 ## Implementation status
 
-**Status: In progress — Milestones 1, 2, and 3 complete.** Milestone 1 establishes
+**Status: In progress — Milestones 1, 2, 3, and 4 complete.** Milestone 1 establishes
 the Microsoft Entra Privileged Identity Management (PIM) readiness and security
 baseline. Milestone 2 remediates the first baseline alert and validates a
 governed, time-bound User Administrator activation from assignment through
 deactivation. Milestone 3 hardens Global Administrator, replaces routine
 standing access with approval-controlled eligibility, and preserves two
-governed emergency-access exceptions. Later milestones remain pending and are
-identified in the delivery roadmap below.
+governed emergency-access exceptions. Milestone 4 extends just-in-time access
+to a dedicated role-assignable group with controlled Directory Readers
+membership. Later milestones remain pending and are identified in the delivery
+roadmap below.
 
 This controlled synthetic implementation demonstrates privileged-access
 governance for Microsoft Entra roles. It progresses from
@@ -27,8 +29,8 @@ organization-wide production deployment.
 | Business problem | Permanent and weakly governed privileged access increases the impact of identity compromise and reduces accountability |
 | Platform | Microsoft Entra ID with PIM for Microsoft Entra roles |
 | Controlled identities | Synthetic administration, approver, eligible-role, and emergency-access identities |
-| Implemented scope | Milestones 1–3: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, audit, and alert validation |
-| Current tenant progress | Milestone 3 complete; Milestone 4 configuration changes have not started |
+| Implemented scope | Milestones 1–4: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, audit, and alert validation |
+| Current tenant progress | Milestone 4 complete; Milestone 5 lifecycle validation has not started |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities retain permanent active Global Administrator as documented recovery exceptions |
 | Evidence boundary | Retained screenshots exclude complete tenant UPNs, personal email addresses, authentication secrets, and tenant configuration identifiers |
 | Final target | A validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, and operational handover |
@@ -70,6 +72,8 @@ The Milestone 2 request and approval path is documented in the
 [Eligible Access and Activation Flow](architecture/02-pim-eligible-access-and-activation-flow.md).
 The Global Administrator assignment and emergency-recovery design is documented
 in the [Global Administrator Governance Model](architecture/03-global-administrator-governance-model.md).
+The group-based privileged-access boundary is documented in the
+[PIM for Groups Just-in-Time Membership Model](architecture/04-pim-for-groups-just-in-time-membership-model.md).
 
 ## Engineering scope
 
@@ -94,7 +98,7 @@ management are outside the current implementation scope.
 | 1 | PIM readiness, privileged-role discovery, security alerts, and pre-change role-policy baseline | **Complete** |
 | 2 | Directory Readers MFA remediation and end-to-end User Administrator eligible activation, approval, use, audit, and deactivation | **Complete** |
 | 3 | Global Administrator policy hardening, standing-access reduction, and governed emergency-access exceptions | **Complete** |
-| 4 | PIM for Groups and controlled privileged-group membership | Not started |
+| 4 | PIM for Groups and controlled privileged-group membership | **Complete** |
 | 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | Not started |
 | 6 | PIM alerts, audit monitoring, periodic review, escalation, and recovery operations | Not started |
 | 7 | Integrated privileged-access scenario, final assurance, limitations, and operational handover | Not started |
@@ -196,6 +200,41 @@ preserving two separately validated emergency-recovery paths.
 Identity-bearing assignment details and the transient stale-alert detail were
 not retained.
 
+## Milestone 4: PIM for Groups
+
+Milestone 4 implemented a dedicated role-assignable security group for
+just-in-time Directory Readers access without repurposing an existing
+Conditional Access scope group.
+
+### Implemented controls
+
+| Area | Implemented state | Validation |
+| --- | --- | --- |
+| Privileged group boundary | Dedicated cloud security group with assigned membership and Microsoft Entra role assignability | Empty baseline and group configuration review |
+| Group-to-role binding | Directory Readers assigned directly and permanently to the dedicated group at Default Directory scope | Assigned-role evidence |
+| Member activation | Two-hour maximum with Azure MFA, justification, ticket information, and independent approval | Hardened-settings and pending-request evidence |
+| Member assignment | Permanent eligible and permanent active membership disabled; eligibility expires after six months | Hardened-settings and eligible-assignment evidence |
+| Least privilege | One direct eligible Member assignment; no owner assignment | Eligible-membership evidence |
+| Session closure | Tested membership manually deactivated after the controlled task | Active-state and audit evidence |
+| Auditability | Eligible assignment, request, approval, activation, membership addition, and removal recorded successfully | Microsoft Entra audit evidence |
+
+The directory read performed during the active window was a supporting
+functional check. It is not treated as sole authorization proof because default
+member permissions may already expose some basic directory information.
+
+### Milestone 4 evidence
+
+| Evidence | Demonstrates |
+| --- | --- |
+| [Empty group baseline](screenshots/m04-01-pim-directory-readers-group-empty-baseline.png) | No active Member assignment before implementation |
+| [Unmodified group settings](screenshots/m04-02-pim-group-default-settings-baseline.png) | Pre-change Member and Owner settings state |
+| [Hardened Member settings](screenshots/m04-03-pim-group-member-hardened-settings.png) | Two-hour activation and strengthened assignment controls |
+| [Directory Readers group assignment](screenshots/m04-04-pim-group-directory-readers-role-assignment.png) | Active direct role binding at Default Directory scope |
+| [Eligible membership available](screenshots/m04-05-pim-group-eligible-membership-available.png) | Direct time-bound Member eligibility and Activate action |
+| [Activation request pending](screenshots/m04-06-pim-group-membership-activation-pending.png) | Approval gate prevented immediate membership activation |
+| [Active membership](screenshots/m04-07-pim-group-membership-active.png) | Approved two-hour Member activation and Deactivate action |
+| [Group audit history](screenshots/m04-08-pim-group-audit-history.png) | Assignment, request, approval, activation, membership addition, and removal sequence |
+
 ## Documentation map
 
 | Area | Artifact |
@@ -218,6 +257,12 @@ not retained.
 | Milestone 3 control results | [Milestone 3 Control Validation](data/05-milestone-03-control-validation.csv) |
 | Global Administrator standard | [Global Administrator and Emergency Access Standard](policies/03-global-administrator-and-emergency-access-standard.md) |
 | Global Administrator procedure | [Global Administrator Operations Runbook](runbooks/03-operate-global-administrator-access.md) |
+| PIM for Groups design | [PIM for Groups Just-in-Time Membership Model](architecture/04-pim-for-groups-just-in-time-membership-model.md) |
+| Milestone 4 implementation record | [PIM for Groups Implementation](docs/07-milestone-04-pim-for-groups-implementation.md) |
+| Milestone 4 testing and exit criteria | [Milestone 4 Test and Validation Record](docs/08-milestone-04-test-and-validation-record.md) |
+| Milestone 4 control results | [Milestone 4 Control Validation](data/07-milestone-04-control-validation.csv) |
+| PIM for Groups standard | [PIM for Groups Access Control Standard](policies/04-pim-for-groups-access-control-standard.md) |
+| Group-membership procedure | [PIM for Groups Membership Runbook](runbooks/04-operate-pim-for-groups-membership.md) |
 
 ## Security and engineering controls
 
@@ -228,6 +273,9 @@ not retained.
 - The requester and approver functions were separated for the tested activation.
 - The elevated role was activated only for a bounded task and manually
   deactivated when the task ended.
+- Directory Readers is bound to a dedicated role-assignable group while user
+  membership remains eligible, time-bound, and approval-controlled.
+- Conditional Access scope groups are not reused as privileged-access groups.
 - Emergency-access identities are separated from routine administration,
   independently validated, and retained as documented permanent exceptions.
 - Later control changes require explicit test outcomes, rollback criteria, and
@@ -255,6 +303,10 @@ not retained.
 - Emergency-access operability was validated at lab scale; production use would
   require independent monitoring, documented ownership, controlled credential
   custody, and recurring recovery exercises.
+- The Milestone 4 directory-read observation is not a standalone authorization
+  test because ordinary member users may read some basic directory information.
+  Assurance therefore relies on the role binding, PIM assignment state, and
+  audit sequence.
 - Later milestones must validate assignment lifecycle, monitoring, escalation,
   and recovery rather than relying only on portal configuration.
 - Production adoption would require representative scale, formal ownership,
@@ -274,3 +326,9 @@ not retained.
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
 - [Manage emergency-access accounts](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
 - [Microsoft Entra ID Governance licensing fundamentals](https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals)
+- [Privileged Identity Management for Groups](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups)
+- [Configure PIM for Groups settings](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-role-settings)
+- [Assign eligibility for a group](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-assign-member-owner)
+- [Activate group membership or ownership](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-activate-roles)
+- [Approve activation requests for group members and owners](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-approval-workflow)
+- [Microsoft Entra audit logs](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-audit-logs)

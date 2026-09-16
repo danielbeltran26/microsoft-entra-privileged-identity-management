@@ -1,0 +1,12 @@
+ControlId,ControlArea,Baseline,ImplementedState,ValidationMethod,Evidence,Result
+M04-C01,Group boundary,"Conditional Access pilot group already existed with permanent direct members","Dedicated role-assignable security group used for privileged access; pilot group unchanged","Group design and inventory review","Operator verification",Pass
+M04-C02,Membership baseline,"Dedicated group had no active members","Empty state recorded before eligible assignment","PIM assignment review","m04-01-pim-directory-readers-group-empty-baseline.png",Pass
+M04-C03,Member policy,"Member and Owner settings were unmodified","Member activation limited to two hours with MFA, justification, ticket, approval, and time-bound assignments","Pre-change and post-change settings review","m04-02-pim-group-default-settings-baseline.png; m04-03-pim-group-member-hardened-settings.png",Pass
+M04-C04,Directory role binding,"Dedicated group held no directory role","Directory Readers assigned directly and permanently at Default Directory scope","Assigned-role review","m04-04-pim-group-directory-readers-role-assignment.png",Pass
+M04-C05,Eligible membership,"Controlled user was not a member of the dedicated group","Direct eligible Member assignment created with six-month end date","Eligible-assignment review","m04-05-pim-group-eligible-membership-available.png",Pass
+M04-C06,Approval gate,"No group activation request existed","Member activation remained pending until independent approval","Pending-request and audit review","m04-06-pim-group-membership-activation-pending.png; m04-08-pim-group-audit-history.png",Pass
+M04-C07,Bounded activation,"Controlled user had no active group membership","Approved direct Member activation carried a two-hour end time","Active-assignment review","m04-07-pim-group-membership-active.png",Pass
+M04-C08,Controlled use,"No elevated group membership was active","Directory information reviewed without modification during the active window","Operator verification","Identity-bearing page intentionally excluded",Pass
+M04-C09,Session closure,"Approved membership could remain active for two hours","Membership manually deactivated after validation; eligibility retained","PIM state and audit review","m04-08-pim-group-audit-history.png",Pass
+M04-C10,Auditability,"No Milestone 4 lifecycle existed","Eligible assignment, request, approval, activation, membership addition, and removal recorded successfully","Microsoft Entra audit-log review","m04-08-pim-group-audit-history.png",Pass
+
