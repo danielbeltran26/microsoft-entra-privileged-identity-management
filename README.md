@@ -2,7 +2,7 @@
 
 ## Implementation status
 
-**Status: In progress — Milestones 1, 2, 3, and 4 complete.** Milestone 1 establishes
+**Status: In progress — Milestones 1 through 5 complete.** Milestone 1 establishes
 the Microsoft Entra Privileged Identity Management (PIM) readiness and security
 baseline. Milestone 2 remediates the first baseline alert and validates a
 governed, time-bound User Administrator activation from assignment through
@@ -10,8 +10,9 @@ deactivation. Milestone 3 hardens Global Administrator, replaces routine
 standing access with approval-controlled eligibility, and preserves two
 governed emergency-access exceptions. Milestone 4 extends just-in-time access
 to a dedicated role-assignable group with controlled Directory Readers
-membership. Later milestones remain pending and are identified in the delivery
-roadmap below.
+membership. Milestone 5 validates time-bound assignment extension, expiration,
+renewal, and removal. Later milestones remain pending and are identified in the
+delivery roadmap below.
 
 This controlled synthetic implementation demonstrates privileged-access
 governance for Microsoft Entra roles. It progresses from
@@ -29,8 +30,8 @@ organization-wide production deployment.
 | Business problem | Permanent and weakly governed privileged access increases the impact of identity compromise and reduces accountability |
 | Platform | Microsoft Entra ID with PIM for Microsoft Entra roles |
 | Controlled identities | Synthetic administration, approver, eligible-role, and emergency-access identities |
-| Implemented scope | Milestones 1–4: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, audit, and alert validation |
-| Current tenant progress | Milestone 4 complete; Milestone 5 lifecycle validation has not started |
+| Implemented scope | Milestones 1–5: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, assignment lifecycle, audit, and alert validation |
+| Current tenant progress | Milestone 5 complete; Milestone 6 monitoring and operational assurance has not started |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities retain permanent active Global Administrator as documented recovery exceptions |
 | Evidence boundary | Retained screenshots exclude complete tenant UPNs, personal email addresses, authentication secrets, and tenant configuration identifiers |
 | Final target | A validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, and operational handover |
@@ -50,6 +51,8 @@ This implementation demonstrates how to:
 - require MFA, justification, ticket information, and approval where appropriate;
 - preserve separately governed emergency access before reducing Global
   Administrator assignments;
+- validate extension, expiration, renewal, and removal decisions for time-bound
+  eligibility;
 - validate the request, approval, activation, use, deactivation, and audit
   sequence; and
 - convert portal configuration into a repeatable operational process.
@@ -74,6 +77,8 @@ The Global Administrator assignment and emergency-recovery design is documented
 in the [Global Administrator Governance Model](architecture/03-global-administrator-governance-model.md).
 The group-based privileged-access boundary is documented in the
 [PIM for Groups Just-in-Time Membership Model](architecture/04-pim-for-groups-just-in-time-membership-model.md).
+The extension, expiration, renewal, and removal decision path is documented in
+the [Privileged Assignment Lifecycle Model](architecture/05-privileged-assignment-lifecycle-model.md).
 
 ## Engineering scope
 
@@ -99,7 +104,7 @@ management are outside the current implementation scope.
 | 2 | Directory Readers MFA remediation and end-to-end User Administrator eligible activation, approval, use, audit, and deactivation | **Complete** |
 | 3 | Global Administrator policy hardening, standing-access reduction, and governed emergency-access exceptions | **Complete** |
 | 4 | PIM for Groups and controlled privileged-group membership | **Complete** |
-| 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | Not started |
+| 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | **Complete** |
 | 6 | PIM alerts, audit monitoring, periodic review, escalation, and recovery operations | Not started |
 | 7 | Integrated privileged-access scenario, final assurance, limitations, and operational handover | Not started |
 
@@ -235,6 +240,33 @@ member permissions may already expose some basic directory information.
 | [Active membership](screenshots/m04-07-pim-group-membership-active.png) | Approved two-hour Member activation and Deactivate action |
 | [Group audit history](screenshots/m04-08-pim-group-audit-history.png) | Assignment, request, approval, activation, membership addition, and removal sequence |
 
+## Milestone 5: privileged assignment lifecycle
+
+Milestone 5 validated how time-bound eligible assignments are continued,
+expired, restored, and closed. Directory Readers exercised extension before
+expiration. Reports Reader exercised automatic expiration and approval-gated
+renewal. Both temporary reader-role assignments were then removed.
+
+### Implemented controls
+
+| Area | Implemented state | Validation |
+| --- | --- | --- |
+| Assignment boundary | Direct, time-bound eligible assignments used for Directory Readers and Reports Reader | Assignment state and audit history |
+| Extension | Directory Readers extended before expiry after a user request and separate administrator approval | Revised eligible end time and audit history |
+| Expiration | Reports Reader allowed to reach its fixed end time and move to Expired assignments | Expired-state evidence and automatic-removal audit event |
+| Renewal | Expired Reports Reader renewed after a fresh justification and separate administrator approval | Renewed eligible end time and audit history |
+| Least privilege | No permanent or active reader-role assignment created | Assignment-state review |
+| Final removal | Temporary Directory Readers and Reports Reader eligibility removed after validation | Audit history and final assignment review |
+| Preservation | Existing User Administrator eligibility and documented emergency access left unchanged | Final assignment review |
+
+### Milestone 5 evidence
+
+| Evidence | Demonstrates |
+| --- | --- |
+| [Expired Reports Reader assignment](screenshots/m05-01-pim-reports-reader-expired-assignment.png) | Reports Reader reached the expired state and offers renewal |
+| [Renewed Reports Reader assignment](screenshots/m05-02-pim-reports-reader-renewed-assignment.png) | Reports Reader returned as eligible with a new bounded end time |
+| [Assignment lifecycle audit history](screenshots/m05-03-pim-assignment-lifecycle-audit-history.png) | Extension, expiration, renewal, reinstatement, and removal events succeeded |
+
 ## Documentation map
 
 | Area | Artifact |
@@ -263,6 +295,12 @@ member permissions may already expose some basic directory information.
 | Milestone 4 control results | [Milestone 4 Control Validation](data/07-milestone-04-control-validation.csv) |
 | PIM for Groups standard | [PIM for Groups Access Control Standard](policies/04-pim-for-groups-access-control-standard.md) |
 | Group-membership procedure | [PIM for Groups Membership Runbook](runbooks/04-operate-pim-for-groups-membership.md) |
+| Assignment lifecycle design | [Privileged Assignment Lifecycle Model](architecture/05-privileged-assignment-lifecycle-model.md) |
+| Milestone 5 implementation record | [Privileged Assignment Lifecycle](docs/09-milestone-05-privileged-assignment-lifecycle.md) |
+| Milestone 5 testing and exit criteria | [Milestone 5 Test and Validation Record](docs/10-milestone-05-test-and-validation-record.md) |
+| Milestone 5 control results | [Milestone 5 Control Validation](data/09-milestone-05-control-validation.csv) |
+| Assignment lifecycle standard | [Privileged Assignment Lifecycle Standard](policies/05-privileged-assignment-lifecycle-standard.md) |
+| Assignment lifecycle procedure | [Privileged Assignment Lifecycle Runbook](runbooks/05-operate-privileged-assignment-lifecycle.md) |
 
 ## Security and engineering controls
 
@@ -275,6 +313,10 @@ member permissions may already expose some basic directory information.
   deactivated when the task ended.
 - Directory Readers is bound to a dedicated role-assignable group while user
   membership remains eligible, time-bound, and approval-controlled.
+- Direct role eligibility is extended or renewed only after a fresh request,
+  bounded end time, and authorized approval decision.
+- Temporary lifecycle-test assignments are removed when their approved purpose
+  ends, without altering unrelated eligibility.
 - Conditional Access scope groups are not reused as privileged-access groups.
 - Emergency-access identities are separated from routine administration,
   independently validated, and retained as documented permanent exceptions.
@@ -307,8 +349,8 @@ member permissions may already expose some basic directory information.
   test because ordinary member users may read some basic directory information.
   Assurance therefore relies on the role binding, PIM assignment state, and
   audit sequence.
-- Later milestones must validate assignment lifecycle, monitoring, escalation,
-  and recovery rather than relying only on portal configuration.
+- Later milestones must validate monitoring, escalation, and recovery rather
+  than relying only on portal configuration.
 - Production adoption would require representative scale, formal ownership,
   change approval, periodic access certification, independent emergency-access
   monitoring, licence continuity, and integration with enterprise ticketing and
@@ -321,6 +363,7 @@ member permissions may already expose some basic directory information.
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)
 - [Assign Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user)
+- [Renew Microsoft Entra role assignments in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-renew-extend)
 - [Activate Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role)
 - [Approve or deny requests for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-approval-workflow)
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
