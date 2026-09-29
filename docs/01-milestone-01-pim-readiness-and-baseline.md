@@ -78,6 +78,26 @@ Default notification recipients were enabled for the administrator, assignee or 
 
 PIM readiness was confirmed and the initial privileged-access control gaps were documented without changing the tenant. The baseline provides the comparison point for controlled remediation and end-to-end activation testing in later milestones.
 
+## Evidence walkthrough
+
+### Discovery and security baseline
+
+![PIM discovery and insights baseline](../screenshots/m01-02-pim-discovery-insights-baseline.png)
+
+![PIM security alerts baseline](../screenshots/m01-03-pim-security-alerts-baseline.png)
+
+![Directory Readers MFA alert](../screenshots/m01-04-pim-mfa-alert-directory-readers.png)
+
+### Role-policy baseline
+
+![Role settings unmodified baseline](../screenshots/m01-06-pim-role-settings-unmodified-baseline.png)
+
+![Directory Readers default settings](../screenshots/m01-07-pim-directory-readers-default-settings.png)
+
+![Global Administrator default settings](../screenshots/m01-08-pim-global-admin-default-settings.png)
+
+![Global Administrator default notifications](../screenshots/m01-09-pim-global-admin-default-notifications.png)
+
 ## References
 
 - [What is Microsoft Entra Privileged Identity Management?](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure)

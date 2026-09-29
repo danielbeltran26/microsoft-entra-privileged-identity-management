@@ -107,6 +107,28 @@ time-bound eligible membership, MFA, justification, ticket information,
 independent approval, a two-hour activation maximum, manual deactivation, and
 auditable lifecycle events.
 
+## Evidence walkthrough
+
+### Group baseline and policy
+
+![Directory Readers group empty baseline](../screenshots/m04-01-pim-directory-readers-group-empty-baseline.png)
+
+![PIM for Groups default settings baseline](../screenshots/m04-02-pim-group-default-settings-baseline.png)
+
+![PIM for Groups hardened Member settings](../screenshots/m04-03-pim-group-member-hardened-settings.png)
+
+### Role binding and activation
+
+![Group Directory Readers role assignment](../screenshots/m04-04-pim-group-directory-readers-role-assignment.png)
+
+![Eligible group membership available](../screenshots/m04-05-pim-group-eligible-membership-available.png)
+
+![Group membership activation pending](../screenshots/m04-06-pim-group-membership-activation-pending.png)
+
+![Group membership active](../screenshots/m04-07-pim-group-membership-active.png)
+
+![PIM for Groups audit history](../screenshots/m04-08-pim-group-audit-history.png)
+
 ## References
 
 - [Privileged Identity Management for Groups](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups)
@@ -115,4 +137,3 @@ auditable lifecycle events.
 - [Activate group membership or ownership](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-activate-roles)
 - [Approve activation requests for group members and owners](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/groups-approval-workflow)
 - [Microsoft Entra audit logs](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-audit-logs)
-

@@ -68,6 +68,20 @@ place; and temporary administrative elevation was closed.
 | [Eligible assignment retained](../screenshots/m06-04-pim-user-administrator-eligible-retained.png) | Reviewed identity remained directly eligible and time-bound |
 | [Operational audit review](../screenshots/m06-05-pim-operational-audit-review.png) | Successful privileged-assignment lifecycle activity was available for reconciliation |
 
+## Evidence walkthrough
+
+### Monitoring and access review
+
+![PIM alerts operational review](../screenshots/m06-01-pim-alerts-operational-review.png)
+
+![User Administrator access review active](../screenshots/m06-02-pim-user-administrator-access-review-active.png)
+
+![User Administrator access review completed](../screenshots/m06-03-pim-user-administrator-access-review-completed.png)
+
+![User Administrator eligible assignment retained](../screenshots/m06-04-pim-user-administrator-eligible-retained.png)
+
+![PIM operational audit review](../screenshots/m06-05-pim-operational-audit-review.png)
+
 ## References
 
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
@@ -75,4 +89,3 @@ place; and temporary administrative elevation was closed.
 - [Complete an access review of Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-complete-roles-and-resource-roles-review)
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
 - [Manage emergency-access accounts](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
-

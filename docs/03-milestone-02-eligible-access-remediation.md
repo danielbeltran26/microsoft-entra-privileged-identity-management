@@ -120,6 +120,28 @@ was hardened, a time-bound eligible assignment was exercised through an
 independent approval gate, the privileged task completed, access was manually
 deactivated, and the full sequence was present in PIM audit history.
 
+## Evidence walkthrough
+
+### Policy remediation
+
+![Directory Readers MFA enforcement](../screenshots/m02-01-pim-directory-readers-mfa-enforced.png)
+
+![User Administrator default settings](../screenshots/m02-02-pim-user-administrator-default-settings.png)
+
+![User Administrator hardened settings](../screenshots/m02-03-pim-user-administrator-hardened-settings.png)
+
+### Activation and validation
+
+![Eligible User Administrator activation available](../screenshots/m02-04-pim-eligible-role-activation-available.png)
+
+![User Administrator activation request pending](../screenshots/m02-05-pim-user-administrator-activation-request-pending.png)
+
+![User Administrator active assignment](../screenshots/m02-06-pim-user-administrator-active-assignment.png)
+
+![User Administrator audit history](../screenshots/m02-07-pim-user-administrator-audit-history.png)
+
+![PIM alerts after MFA remediation](../screenshots/m02-08-pim-alerts-after-mfa-remediation.png)
+
 ## References
 
 - [Configure Microsoft Entra role settings in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings)

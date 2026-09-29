@@ -60,6 +60,16 @@ operational handover.
 | [Integrated activation audit history](../screenshots/m07-02-pim-integrated-activation-audit-history.png) | Request, approval, activation, failed removal attempt, successful retry, and closure were recorded |
 | [Final PIM alert scan](../screenshots/m07-03-pim-final-alert-scan.png) | Final point-in-time alert scan returned no results |
 
+## Evidence walkthrough
+
+### Integrated assurance
+
+![Integrated group membership active](../screenshots/m07-01-pim-integrated-group-membership-active.png)
+
+![Integrated activation audit history](../screenshots/m07-02-pim-integrated-activation-audit-history.png)
+
+![Final PIM alert scan](../screenshots/m07-03-pim-final-alert-scan.png)
+
 ## References
 
 - [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan)
@@ -68,4 +78,3 @@ operational handover.
 - [View audit history for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log)
 - [Security alerts for Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts)
 - [Manage emergency-access accounts](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
-

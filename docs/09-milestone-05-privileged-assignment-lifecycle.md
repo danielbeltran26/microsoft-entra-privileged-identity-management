@@ -94,6 +94,16 @@ access remained intact.
 | [Renewed Reports Reader assignment](../screenshots/m05-02-pim-reports-reader-renewed-assignment.png) | Reports Reader eligibility returned with a new bounded end time after approval |
 | [Assignment lifecycle audit history](../screenshots/m05-03-pim-assignment-lifecycle-audit-history.png) | Extension, expiration, renewal, reinstatement, and removal events completed successfully |
 
+## Evidence walkthrough
+
+### Assignment lifecycle
+
+![Expired Reports Reader assignment](../screenshots/m05-01-pim-reports-reader-expired-assignment.png)
+
+![Renewed Reports Reader assignment](../screenshots/m05-02-pim-reports-reader-renewed-assignment.png)
+
+![Privileged assignment lifecycle audit history](../screenshots/m05-03-pim-assignment-lifecycle-audit-history.png)
+
 ## References
 
 - [Renew Microsoft Entra role assignments in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-renew-extend)

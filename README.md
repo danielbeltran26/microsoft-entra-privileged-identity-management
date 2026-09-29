@@ -37,6 +37,7 @@ organization-wide production deployment.
 | Current tenant progress | Implementation complete; all milestone exit criteria passed |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities retain permanent active Global Administrator as documented recovery exceptions |
 | Evidence boundary | Retained screenshots exclude complete tenant UPNs, personal email addresses, authentication secrets, and tenant configuration identifiers |
+| Evidence presentation | Every milestone implementation document includes an inline walkthrough of its approved privacy-safe screenshots |
 | Final outcome | Validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, recovery assurance, and operational handover |
 
 ## Business scenario and objective
@@ -464,7 +465,7 @@ implementation, validation, and operational handover record.
 | --- | --- |
 | `architecture/` | PIM scope, trust boundaries, responsibilities, and operating model |
 | `data/` | Structured baseline findings and control-validation results |
-| `docs/` | Milestone implementation and validation records |
+| `docs/` | Milestone implementation and validation records with inline evidence walkthroughs |
 | `policies/` | Privileged-access control requirements and role-policy decisions |
 | `runbooks/` | Repeatable review, activation, recovery, and monitoring procedures |
 | `screenshots/` | Approved numbered technical evidence |

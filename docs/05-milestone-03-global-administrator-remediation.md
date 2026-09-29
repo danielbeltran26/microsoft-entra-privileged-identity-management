@@ -108,6 +108,20 @@ recovery assignments were preserved, the privileged session was deactivated,
 the complete event sequence was auditable, and the PIM alert cleared after scan
 completion.
 
+## Evidence walkthrough
+
+### Global Administrator governance
+
+![Global Administrator hardened settings](../screenshots/m03-01-pim-global-administrator-hardened-settings.png)
+
+![Global Administrator activation request pending](../screenshots/m03-02-pim-global-administrator-activation-request-pending.png)
+
+![Global Administrator active assignment](../screenshots/m03-03-pim-global-administrator-active-assignment.png)
+
+![Global Administrator audit history](../screenshots/m03-04-pim-global-administrator-audit-history.png)
+
+![PIM alerts after Global Administrator remediation](../screenshots/m03-05-pim-alerts-after-global-administrator-remediation.png)
+
 ## References
 
 - [Plan a Privileged Identity Management deployment](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan)
