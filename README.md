@@ -183,9 +183,6 @@ hardened and tested through a complete eligible-access workflow.
 | [PIM audit history](screenshots/m02-07-pim-user-administrator-audit-history.png) | Assignment, request, approval, activation, and deactivation sequence |
 | [Alerts after remediation](screenshots/m02-08-pim-alerts-after-mfa-remediation.png) | MFA alert resolved and unrelated Global Administrator alert retained |
 
-Three exploratory files prefixed `m02-review-` were not retained because they
-add no unique control evidence.
-
 ## Milestone 3: Global Administrator governance
 
 Milestone 3 reduced routine standing Global Administrator access while
