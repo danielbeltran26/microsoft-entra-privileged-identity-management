@@ -2,7 +2,7 @@
 
 ## Implementation status
 
-**Status: In progress — Milestones 1 through 6 complete.** Milestone 1 establishes
+**Status: Complete — all seven milestones validated.** Milestone 1 establishes
 the Microsoft Entra Privileged Identity Management (PIM) readiness and security
 baseline. Milestone 2 remediates the first baseline alert and validates a
 governed, time-bound User Administrator activation from assignment through
@@ -13,7 +13,9 @@ to a dedicated role-assignable group with controlled Directory Readers
 membership. Milestone 5 validates time-bound assignment extension, expiration,
 renewal, and removal. Milestone 6 validates PIM monitoring, independent access
 review, recovery assurance, escalation, and administrative session closure.
-The final milestone remains pending and is identified in the delivery roadmap.
+Milestone 7 completes the integrated request, approval, activation, controlled
+use, deactivation, audit, final alert scan, recovery assurance, and operational
+handover scenario.
 
 This controlled synthetic implementation demonstrates privileged-access
 governance for Microsoft Entra roles. It progresses from
@@ -31,11 +33,11 @@ organization-wide production deployment.
 | Business problem | Permanent and weakly governed privileged access increases the impact of identity compromise and reduces accountability |
 | Platform | Microsoft Entra ID with PIM for Microsoft Entra roles |
 | Controlled identities | Synthetic administration, approver, eligible-role, and emergency-access identities |
-| Implemented scope | Milestones 1–6: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, assignment lifecycle, alert and audit monitoring, access review, recovery assurance, and escalation |
-| Current tenant progress | Milestone 6 complete; Milestone 7 integrated assurance and handover has not started |
+| Implemented scope | All seven milestones: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, assignment lifecycle, alert and audit monitoring, access review, recovery assurance, integrated validation, and operational handover |
+| Current tenant progress | Implementation complete; all milestone exit criteria passed |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities retain permanent active Global Administrator as documented recovery exceptions |
 | Evidence boundary | Retained screenshots exclude complete tenant UPNs, personal email addresses, authentication secrets, and tenant configuration identifiers |
-| Final target | A validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, and operational handover |
+| Final outcome | Validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, recovery assurance, and operational handover |
 
 ## Business scenario and objective
 
@@ -56,7 +58,8 @@ This implementation demonstrates how to:
   eligibility;
 - validate the request, approval, activation, use, deactivation, and audit
   sequence; and
-- convert portal configuration into a repeatable operational process.
+- convert portal configuration into a repeatable operational process with
+  assigned ownership, escalation, and recovery requirements.
 
 ## Architecture and control flow
 
@@ -82,6 +85,8 @@ The extension, expiration, renewal, and removal decision path is documented in
 the [Privileged Assignment Lifecycle Model](architecture/05-privileged-assignment-lifecycle-model.md).
 The monitoring, review, recovery, and escalation controls are documented in the
 [Privileged Access Monitoring and Assurance Model](architecture/06-privileged-access-monitoring-and-assurance-model.md).
+The final end-to-end control path and handover responsibilities are documented
+in the [Integrated PIM Assurance and Handover Model](architecture/07-integrated-pim-assurance-and-handover-model.md).
 
 ## Engineering scope
 
@@ -95,6 +100,7 @@ The monitoring, review, recovery, and escalation controls are documented in the
 - PIM for Groups and controlled privileged-group membership
 - Activation, deactivation, expiration, renewal, extension, and removal lifecycle
 - PIM audit evidence, monitoring, operational review, and recovery procedures
+- Integrated control validation, failure reconciliation, and operational handover
 
 Azure resource roles, production-scale privileged populations, and entitlement
 management are outside the current implementation scope.
@@ -109,7 +115,7 @@ management are outside the current implementation scope.
 | 4 | PIM for Groups and controlled privileged-group membership | **Complete** |
 | 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | **Complete** |
 | 6 | PIM alerts, audit monitoring, periodic review, escalation, and recovery operations | **Complete** |
-| 7 | Integrated privileged-access scenario, final assurance, limitations, and operational handover | Not started |
+| 7 | Integrated privileged-access scenario, final assurance, limitations, and operational handover | **Complete** |
 
 ## Milestone 1: readiness and security baseline
 
@@ -301,6 +307,55 @@ administrative elevation was closed.
 | [Eligible assignment retained](screenshots/m06-04-pim-user-administrator-eligible-retained.png) | Continued access remained eligible and bounded |
 | [Operational audit review](screenshots/m06-05-pim-operational-audit-review.png) | Recent privileged lifecycle operations were available for reconciliation |
 
+## Milestone 7: integrated assurance and operational handover
+
+Milestone 7 exercised the completed operating model through one final PIM for
+Groups activation. The controlled requester submitted a bounded Member
+activation, an independent approver authorized it, the requester performed a
+read-only validation, and active access was removed after use.
+
+The first removal-processing event failed. A supported portal retry then
+completed successfully. Both events remain visible in the audit history, which
+demonstrates exception reconciliation without concealing the initial failure.
+The final alert scan returned no results, both emergency-access assignments
+remained available, and temporary monitoring-administrator elevation was
+deactivated.
+
+### Final assurance results
+
+| Control | Final state |
+| --- | --- |
+| Routine standing privilege | No new permanent routine assignment introduced |
+| Integrated activation | Eligible, justified, approved, direct, and time-bound |
+| Controlled use | Read-only validation completed without configuration change |
+| Closure | Initial removal failure reconciled; retry completed successfully |
+| Audit | Request, approval, activation, failure, retry, and removal recorded |
+| Alerts | Final point-in-time scan returned no results |
+| Recovery | Two active, direct, permanent emergency Global Administrators retained |
+| Administrative session | Temporary IAM-Admin Global Administrator activation deactivated |
+
+### Milestone 7 evidence
+
+| Evidence | Demonstrates |
+| --- | --- |
+| [Integrated group membership active](screenshots/m07-01-pim-integrated-group-membership-active.png) | Direct Member activation with a bounded end time and Deactivate action |
+| [Integrated activation audit history](screenshots/m07-02-pim-integrated-activation-audit-history.png) | Request, independent approval, activation, failed removal attempt, successful retry, and closure |
+| [Final PIM alert scan](screenshots/m07-03-pim-final-alert-scan.png) | Final alert review returned no results |
+
+## Final project documents
+
+These artifacts provide the final project-level design, governance,
+implementation, validation, and operational handover record.
+
+| Purpose | Final artifact |
+| --- | --- |
+| Integrated architecture and responsibility model | [Integrated PIM Assurance and Handover Model](architecture/07-integrated-pim-assurance-and-handover-model.md) |
+| Final implementation and handover record | [Milestone 7 Integrated Assurance and Operational Handover](docs/13-milestone-07-integrated-assurance-and-handover.md) |
+| Final test results, exit criteria, and limitations | [Milestone 7 Test and Validation Record](docs/14-milestone-07-test-and-validation-record.md) |
+| Structured final control results | [Milestone 7 Control Validation](data/13-milestone-07-control-validation.csv) |
+| Operational ownership and acceptance requirements | [PIM Operational Ownership and Handover Standard](policies/07-pim-operational-ownership-and-handover-standard.md) |
+| Repeatable end-to-end validation and handover procedure | [PIM Integrated Assurance and Handover Runbook](runbooks/07-pim-integrated-assurance-and-handover-runbook.md) |
+
 ## Documentation map
 
 | Area | Artifact |
@@ -341,6 +396,12 @@ administrative elevation was closed.
 | Milestone 6 control results | [Milestone 6 Control Validation](data/11-milestone-06-control-validation.csv) |
 | Monitoring and escalation standard | [PIM Monitoring, Review, and Escalation Standard](policies/06-pim-monitoring-review-and-escalation-standard.md) |
 | Monitoring and access-review procedure | [PIM Monitoring, Access Review, and Recovery Runbook](runbooks/06-operate-pim-monitoring-access-review-and-recovery.md) |
+| Integrated assurance and handover design | [Integrated PIM Assurance and Handover Model](architecture/07-integrated-pim-assurance-and-handover-model.md) |
+| Milestone 7 implementation and handover record | [Integrated Assurance and Operational Handover](docs/13-milestone-07-integrated-assurance-and-handover.md) |
+| Milestone 7 testing and exit criteria | [Milestone 7 Test and Validation Record](docs/14-milestone-07-test-and-validation-record.md) |
+| Milestone 7 control results | [Milestone 7 Control Validation](data/13-milestone-07-control-validation.csv) |
+| Operational ownership standard | [PIM Operational Ownership and Handover Standard](policies/07-pim-operational-ownership-and-handover-standard.md) |
+| Integrated assurance procedure | [PIM Integrated Assurance and Handover Runbook](runbooks/07-pim-integrated-assurance-and-handover-runbook.md) |
 
 ## Security and engineering controls
 
@@ -364,8 +425,36 @@ administrative elevation was closed.
   reviewer and reconciled against the resulting assignment state.
 - PIM alerts and privileged audit activity are reviewed using defined triage
   and escalation criteria.
-- Later control changes require explicit test outcomes, rollback criteria, and
+- Failed privileged operations are retained and reconciled with any successful
+  retry rather than removed from the assurance record.
+- Future control changes require explicit test outcomes, rollback criteria, and
   post-change evidence.
+
+## Operational cadence and ownership
+
+| Activity | Minimum cadence | Accountable function |
+| --- | --- | --- |
+| PIM alert review | Weekly and after material PIM changes | Security Operations |
+| Privileged audit reconciliation | Weekly | IAM operations and Security Operations |
+| High-impact eligible-access review | Quarterly | Designated access reviewer |
+| Emergency-assignment presence check | Monthly | Identity Security owner |
+| Emergency-access operational test | At least every 90 days under an approved procedure | Identity Security leadership |
+| Role-policy and approver review | Quarterly and after ownership change | Privileged Access Administration |
+
+## Demonstrated engineering outcomes
+
+- Converted routine privileged access from permanent active assignment to
+  eligible, approval-controlled, time-bound access.
+- Hardened role and privileged-group activation controls with MFA,
+  justification, ticket information, duration limits, and independent approval.
+- Preserved two separately governed emergency recovery paths while reducing
+  ordinary Global Administrator exposure.
+- Demonstrated PIM for Groups, assignment extension, expiration, renewal,
+  removal, periodic access review, alert monitoring, and audit reconciliation.
+- Completed an end-to-end scenario including transparent handling of a failed
+  deactivation event followed by a successful retry and verified closure.
+- Produced architecture, policy, runbook, implementation, validation, structured
+  control-result, and privacy-safe evidence artifacts for operational handover.
 
 ## Technical documentation structure
 
@@ -378,7 +467,7 @@ administrative elevation was closed.
 | `runbooks/` | Repeatable review, activation, recovery, and monitoring procedures |
 | `screenshots/` | Approved numbered technical evidence |
 
-## Current limitations and production improvements
+## Limitations and production improvements
 
 - The implementation uses a small controlled synthetic tenant population.
 - Milestone 1 portal discovery is not a substitute for a complete Microsoft
@@ -393,9 +482,9 @@ administrative elevation was closed.
   test because ordinary member users may read some basic directory information.
   Assurance therefore relies on the role binding, PIM assignment state, and
   audit sequence.
-- Monitoring, escalation, access review, and recovery-presence checks were
-  validated at lab scale; the final milestone must integrate these controls
-  into the end-to-end assurance and operational handover.
+- Monitoring, escalation, access review, recovery-presence checks, and
+  end-to-end handover were validated at lab scale; production adoption still
+  requires enterprise ownership, automation, retention, and integration.
 - Production adoption would require representative scale, formal ownership,
   change approval, periodic access certification, independent emergency-access
   monitoring, licence continuity, and integration with enterprise ticketing and
