@@ -2,7 +2,7 @@
 
 ## Implementation status
 
-**Status: In progress — Milestones 1 through 5 complete.** Milestone 1 establishes
+**Status: In progress — Milestones 1 through 6 complete.** Milestone 1 establishes
 the Microsoft Entra Privileged Identity Management (PIM) readiness and security
 baseline. Milestone 2 remediates the first baseline alert and validates a
 governed, time-bound User Administrator activation from assignment through
@@ -11,8 +11,9 @@ standing access with approval-controlled eligibility, and preserves two
 governed emergency-access exceptions. Milestone 4 extends just-in-time access
 to a dedicated role-assignable group with controlled Directory Readers
 membership. Milestone 5 validates time-bound assignment extension, expiration,
-renewal, and removal. Later milestones remain pending and are identified in the
-delivery roadmap below.
+renewal, and removal. Milestone 6 validates PIM monitoring, independent access
+review, recovery assurance, escalation, and administrative session closure.
+The final milestone remains pending and is identified in the delivery roadmap.
 
 This controlled synthetic implementation demonstrates privileged-access
 governance for Microsoft Entra roles. It progresses from
@@ -30,8 +31,8 @@ organization-wide production deployment.
 | Business problem | Permanent and weakly governed privileged access increases the impact of identity compromise and reduces accountability |
 | Platform | Microsoft Entra ID with PIM for Microsoft Entra roles |
 | Controlled identities | Synthetic administration, approver, eligible-role, and emergency-access identities |
-| Implemented scope | Milestones 1–5: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, assignment lifecycle, audit, and alert validation |
-| Current tenant progress | Milestone 5 complete; Milestone 6 monitoring and operational assurance has not started |
+| Implemented scope | Milestones 1–6: readiness, baseline assessment, role-policy remediation, eligible assignment, approval-controlled activation, standing-access reduction, emergency-access exceptions, PIM for Groups, assignment lifecycle, alert and audit monitoring, access review, recovery assurance, and escalation |
+| Current tenant progress | Milestone 6 complete; Milestone 7 integrated assurance and handover has not started |
 | Recovery boundary | Two separately governed cloud-only emergency-access identities retain permanent active Global Administrator as documented recovery exceptions |
 | Evidence boundary | Retained screenshots exclude complete tenant UPNs, personal email addresses, authentication secrets, and tenant configuration identifiers |
 | Final target | A validated least-privilege PIM operating model with time-bound elevation, approval, monitoring, lifecycle controls, and operational handover |
@@ -79,6 +80,8 @@ The group-based privileged-access boundary is documented in the
 [PIM for Groups Just-in-Time Membership Model](architecture/04-pim-for-groups-just-in-time-membership-model.md).
 The extension, expiration, renewal, and removal decision path is documented in
 the [Privileged Assignment Lifecycle Model](architecture/05-privileged-assignment-lifecycle-model.md).
+The monitoring, review, recovery, and escalation controls are documented in the
+[Privileged Access Monitoring and Assurance Model](architecture/06-privileged-access-monitoring-and-assurance-model.md).
 
 ## Engineering scope
 
@@ -105,7 +108,7 @@ management are outside the current implementation scope.
 | 3 | Global Administrator policy hardening, standing-access reduction, and governed emergency-access exceptions | **Complete** |
 | 4 | PIM for Groups and controlled privileged-group membership | **Complete** |
 | 5 | Privileged assignment lifecycle validation covering expiration, renewal, extension, and removal decisions | **Complete** |
-| 6 | PIM alerts, audit monitoring, periodic review, escalation, and recovery operations | Not started |
+| 6 | PIM alerts, audit monitoring, periodic review, escalation, and recovery operations | **Complete** |
 | 7 | Integrated privileged-access scenario, final assurance, limitations, and operational handover | Not started |
 
 ## Milestone 1: readiness and security baseline
@@ -267,6 +270,37 @@ renewal. Both temporary reader-role assignments were then removed.
 | [Renewed Reports Reader assignment](screenshots/m05-02-pim-reports-reader-renewed-assignment.png) | Reports Reader returned as eligible with a new bounded end time |
 | [Assignment lifecycle audit history](screenshots/m05-03-pim-assignment-lifecycle-audit-history.png) | Extension, expiration, renewal, reinstatement, and removal events succeeded |
 
+## Milestone 6: monitoring and operational assurance
+
+Milestone 6 moved the implementation into recurring privileged-access
+assurance. PIM alerts and Resource audit were reviewed, eligible User
+Administrator access received an independent access-review decision, the
+post-review assignment remained eligible and time-bound, two emergency-access
+Global Administrator assignments remained available, and temporary
+administrative elevation was closed.
+
+### Implemented controls
+
+| Area | Implemented state | Validation |
+| --- | --- | --- |
+| Alert monitoring | Current PIM Alerts view reviewed and returned no results | Operational alert evidence |
+| Access certification | One-time review of eligible User Administrator access by a separate reviewer | Active review and decision summary |
+| Decision completeness | One approved, zero denied, and zero not reviewed | Completed review overview |
+| Post-review least privilege | Reviewed assignment remained eligible, direct, and time-bound | Eligible assignment inventory |
+| Audit monitoring | Recent privileged lifecycle activity reconciled in Resource audit | Filtered audit evidence with successful results |
+| Recovery assurance | Two permanent active emergency Global Administrators confirmed without modification | Controlled operator verification |
+| Session closure | Temporary IAM-Admin Global Administrator activation deactivated | Controlled operator verification |
+
+### Milestone 6 evidence
+
+| Evidence | Demonstrates |
+| --- | --- |
+| [PIM alerts operational review](screenshots/m06-01-pim-alerts-operational-review.png) | Current PIM alert review returned no results |
+| [Active access review](screenshots/m06-02-pim-user-administrator-access-review-active.png) | Review entered the active state |
+| [Completed access-review decision](screenshots/m06-03-pim-user-administrator-access-review-completed.png) | One approval and no outstanding or denied decisions |
+| [Eligible assignment retained](screenshots/m06-04-pim-user-administrator-eligible-retained.png) | Continued access remained eligible and bounded |
+| [Operational audit review](screenshots/m06-05-pim-operational-audit-review.png) | Recent privileged lifecycle operations were available for reconciliation |
+
 ## Documentation map
 
 | Area | Artifact |
@@ -301,6 +335,12 @@ renewal. Both temporary reader-role assignments were then removed.
 | Milestone 5 control results | [Milestone 5 Control Validation](data/09-milestone-05-control-validation.csv) |
 | Assignment lifecycle standard | [Privileged Assignment Lifecycle Standard](policies/05-privileged-assignment-lifecycle-standard.md) |
 | Assignment lifecycle procedure | [Privileged Assignment Lifecycle Runbook](runbooks/05-operate-privileged-assignment-lifecycle.md) |
+| Monitoring and assurance design | [Privileged Access Monitoring and Assurance Model](architecture/06-privileged-access-monitoring-and-assurance-model.md) |
+| Milestone 6 implementation record | [Monitoring and Operational Assurance](docs/11-milestone-06-monitoring-and-operational-assurance.md) |
+| Milestone 6 testing and exit criteria | [Milestone 6 Test and Validation Record](docs/12-milestone-06-test-and-validation-record.md) |
+| Milestone 6 control results | [Milestone 6 Control Validation](data/11-milestone-06-control-validation.csv) |
+| Monitoring and escalation standard | [PIM Monitoring, Review, and Escalation Standard](policies/06-pim-monitoring-review-and-escalation-standard.md) |
+| Monitoring and access-review procedure | [PIM Monitoring, Access Review, and Recovery Runbook](runbooks/06-operate-pim-monitoring-access-review-and-recovery.md) |
 
 ## Security and engineering controls
 
@@ -320,6 +360,10 @@ renewal. Both temporary reader-role assignments were then removed.
 - Conditional Access scope groups are not reused as privileged-access groups.
 - Emergency-access identities are separated from routine administration,
   independently validated, and retained as documented permanent exceptions.
+- High-impact eligible access is periodically reviewed by an independent
+  reviewer and reconciled against the resulting assignment state.
+- PIM alerts and privileged audit activity are reviewed using defined triage
+  and escalation criteria.
 - Later control changes require explicit test outcomes, rollback criteria, and
   post-change evidence.
 
@@ -349,8 +393,9 @@ renewal. Both temporary reader-role assignments were then removed.
   test because ordinary member users may read some basic directory information.
   Assurance therefore relies on the role binding, PIM assignment state, and
   audit sequence.
-- Later milestones must validate monitoring, escalation, and recovery rather
-  than relying only on portal configuration.
+- Monitoring, escalation, access review, and recovery-presence checks were
+  validated at lab scale; the final milestone must integrate these controls
+  into the end-to-end assurance and operational handover.
 - Production adoption would require representative scale, formal ownership,
   change approval, periodic access certification, independent emergency-access
   monitoring, licence continuity, and integration with enterprise ticketing and
