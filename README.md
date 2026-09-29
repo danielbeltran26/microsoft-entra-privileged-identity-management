@@ -355,6 +355,7 @@ implementation, validation, and operational handover record.
 | Structured final control results | [Milestone 7 Control Validation](data/13-milestone-07-control-validation.csv) |
 | Operational ownership and acceptance requirements | [PIM Operational Ownership and Handover Standard](policies/07-pim-operational-ownership-and-handover-standard.md) |
 | Repeatable end-to-end validation and handover procedure | [PIM Integrated Assurance and Handover Runbook](runbooks/07-pim-integrated-assurance-and-handover-runbook.md) |
+| Cross-milestone engineering and operational lessons | [Project Lessons Learned](docs/15-project-lessons-learned.md) |
 
 ## Documentation map
 
@@ -402,6 +403,7 @@ implementation, validation, and operational handover record.
 | Milestone 7 control results | [Milestone 7 Control Validation](data/13-milestone-07-control-validation.csv) |
 | Operational ownership standard | [PIM Operational Ownership and Handover Standard](policies/07-pim-operational-ownership-and-handover-standard.md) |
 | Integrated assurance procedure | [PIM Integrated Assurance and Handover Runbook](runbooks/07-pim-integrated-assurance-and-handover-runbook.md) |
+| Project lessons learned | [Project Lessons Learned](docs/15-project-lessons-learned.md) |
 
 ## Security and engineering controls
 
